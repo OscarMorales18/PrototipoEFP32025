@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 04-06-2025 a las 21:45:36
+-- Tiempo de generación: 05-06-2025 a las 20:07:06
 -- Versión del servidor: 10.4.32-MariaDB
 -- Versión de PHP: 8.2.12
 
@@ -61,36 +61,24 @@ INSERT INTO `bitacora` (`id_bitacora`, `id_usuario`, `id_aplicacion`, `fecha`, `
 (17, 2039, 1, '2025-06-04 13:37:58', '192.168.1.4', 'Inicio Sesion', 'LenovoIdeaPadS3'),
 (18, 2039, 1, '2025-06-04 13:38:56', '192.168.1.4', 'Inicio Sesion', 'LenovoIdeaPadS3'),
 (19, 2039, 1, '2025-06-04 13:42:02', '192.168.1.4', 'Inicio Sesion', 'LenovoIdeaPadS3'),
-(20, 2039, 1, '2025-06-04 13:44:43', '192.168.1.4', 'Inicio Sesion', 'LenovoIdeaPadS3');
+(20, 2039, 1, '2025-06-04 13:44:43', '192.168.1.4', 'Inicio Sesion', 'LenovoIdeaPadS3'),
+(21, 2039, 1, '2025-06-05 11:55:23', '172.20.10.3', 'Inicio Sesion', 'LenovoIdeaPadS3'),
+(22, 2039, 1, '2025-06-05 11:56:49', '172.20.10.3', 'Inicio Sesion', 'LenovoIdeaPadS3'),
+(23, 2039, 1, '2025-06-05 12:03:17', '172.20.10.3', 'Inicio Sesion', 'LenovoIdeaPadS3');
 
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `perfiles`
+-- Estructura de tabla para la tabla `bodega`
 --
 
-CREATE TABLE `perfiles` (
-  `id_perfil` int(10) NOT NULL,
-  `nombre_perfil` varchar(85) DEFAULT NULL,
-  `estatus_perfil` varchar(1) DEFAULT NULL
+CREATE TABLE `bodega` (
+  `pkid` varchar(15) NOT NULL,
+  `fkidtipobodega` varchar(15) NOT NULL,
+  `nombre` varchar(15) NOT NULL,
+  `direccion` varchar(15) NOT NULL,
+  `estado` varchar(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
-
---
--- Volcado de datos para la tabla `perfiles`
---
-
-INSERT INTO `perfiles` (`id_perfil`, `nombre_perfil`, `estatus_perfil`) VALUES
-(100, 'Cliente', '1'),
-(101, 'Proveedor', '1'),
-(102, 'Compradores', '1'),
-(103, 'OrdenCompra', '1'),
-(111, 'Gerentes', '1'),
-(145, 'Contadores', '1'),
-(150, 'pepito', '1'),
-(202, 'Programador', '1'),
-(222, 'Proveedores', '1'),
-(333, 'Inversores', '1'),
-(500, 'pepito', '1');
 
 -- --------------------------------------------------------
 
@@ -112,22 +100,6 @@ INSERT INTO `usuario` (`id_usuario`, `username`, `password`) VALUES
 (2026, 'admin', '5994471abb01112afcc18159f6cc74b4f511b99806da59b3caf5a9c173cacfc5'),
 (2039, 'oscar', '5994471abb01112afcc18159f6cc74b4f511b99806da59b3caf5a9c173cacfc5');
 
--- --------------------------------------------------------
-
---
--- Estructura de tabla para la tabla `vendedor`
---
-
-CREATE TABLE `vendedor` (
-  `id_vendedor` int(11) NOT NULL,
-  `nombre_vendedor` varchar(50) NOT NULL,
-  `apellido_vendedor` varchar(50) NOT NULL,
-  `telefono_vendedor` int(8) NOT NULL,
-  `direccion_vendedor` varchar(50) NOT NULL,
-  `correo_vendedor` varchar(50) NOT NULL,
-  `estatus_vendedor` varchar(1) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
-
 --
 -- Índices para tablas volcadas
 --
@@ -139,22 +111,16 @@ ALTER TABLE `bitacora`
   ADD PRIMARY KEY (`id_bitacora`);
 
 --
--- Indices de la tabla `perfiles`
+-- Indices de la tabla `bodega`
 --
-ALTER TABLE `perfiles`
-  ADD PRIMARY KEY (`id_perfil`);
+ALTER TABLE `bodega`
+  ADD PRIMARY KEY (`pkid`);
 
 --
 -- Indices de la tabla `usuario`
 --
 ALTER TABLE `usuario`
   ADD PRIMARY KEY (`id_usuario`);
-
---
--- Indices de la tabla `vendedor`
---
-ALTER TABLE `vendedor`
-  ADD PRIMARY KEY (`id_vendedor`);
 
 --
 -- AUTO_INCREMENT de las tablas volcadas
@@ -164,7 +130,7 @@ ALTER TABLE `vendedor`
 -- AUTO_INCREMENT de la tabla `bitacora`
 --
 ALTER TABLE `bitacora`
-  MODIFY `id_bitacora` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+  MODIFY `id_bitacora` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
 
 --
 -- AUTO_INCREMENT de la tabla `usuario`
