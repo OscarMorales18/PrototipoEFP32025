@@ -3,13 +3,14 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+
 package Modelo.seguridad;
 
-import Controlador.seguridad.Perfil; 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
+import Controlador.seguridad.Bodega; 
 import Modelo.Conexion;
 import java.io.File;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -22,40 +23,34 @@ import net.sf.jasperreports.engine.JasperPrint;
 import net.sf.jasperreports.engine.JasperReport;
 import net.sf.jasperreports.view.JasperViewer;
 
-/**
- *
- * @author visitante
- */
-public class PerfilDAO {
-
-    private static final String SQL_SELECT = "SELECT id_perfil, nombre_perfil, estatus_perfil FROM perfiles";
-    private static final String SQL_INSERT = "INSERT INTO perfiles(id_perfil, nombre_perfil, estatus_perfil) VALUES(?, ?, ?)";
-    private static final String SQL_UPDATE = "UPDATE perfiles SET nombre_perfil=?, estatus_perfil=? WHERE id_perfil = ?";
-    private static final String SQL_DELETE = "DELETE FROM perfiles WHERE id_perfil=?";
-    private static final String SQL_QUERY = "SELECT id_perfil, nombre_perfil, estatus_perfil FROM perfiles WHERE id_perfil = ?";
-
-    public List<Perfil> select() {
+public class BodegaDAO {
+    
+    private static final String SQL_SELECT = "SELECT pkid, fkidtipobodega, nombre, direccion, estado FROM bodega";
+    private static final String SQL_INSERT = "INSERT INTO bodega (pkid, fkidtipobodega, nombre, direccion, estado) VALUES (?, ?, ?, ?, ?)";
+    private static final String SQL_UPDATE = "UPDATE bodega SET fkidtipobodega=?, nombre=?, direccion=?, estado=? WHERE pkid=? ";
+    private static final String SQL_DELETE = "DELETE FROM bodega WHERE pkid=?";
+    private static final String SQL_QUERY = "SELECT pkid, fkidtipobodega, nombre, direccion, estado FROM bodega WHERE pkid=?";
+    
+    public List<Bodega> select() {
         Connection conn = null;
         PreparedStatement stmt = null;
         ResultSet rs = null;
-        Perfil perfil = null;
-        List<Perfil> perfiles = new ArrayList<Perfil>();
+        List<Bodega> list_bodegaes = new ArrayList<>();
 
         try {
             conn = Conexion.getConnection();
             stmt = conn.prepareStatement(SQL_SELECT);
             rs = stmt.executeQuery();
+            
             while (rs.next()) {
-                int idPerfil = rs.getInt("id_perfil");
-                String nombrePerfil = rs.getString("nombre_perfil");
-                String estatusPerfil = rs.getString("estatus_perfil");
+                Bodega bodega = new Bodega();
+                bodega.setPkid(rs.getString("pkid"));
+                bodega.setFkidtipobodega(rs.getString("fkidtipobodega"));
+                bodega.setNombre(rs.getString("nombre"));
+                bodega.setDireccion(rs.getString("direccion"));
+                bodega.setEstado(rs.getString("estado"));
                 
-                perfil = new Perfil();
-                perfil.setId_perfil(idPerfil);
-                perfil.setNombre_perfil(nombrePerfil);
-                perfil.setEstatus_perfil(estatusPerfil);
-                
-                perfiles.add(perfil);
+                list_bodegaes.add(bodega);
             }
 
         } catch (SQLException ex) {
@@ -65,106 +60,93 @@ public class PerfilDAO {
             Conexion.close(stmt);
             Conexion.close(conn);
         }
-
-        return perfiles;
+        return list_bodegaes;
     }
-
-    public int insert(Perfil perfil) { 
+    public int insert(Bodega bodega) {
         Connection conn = null;
         PreparedStatement stmt = null;
         int rows = 0;
+
         try {
             conn = Conexion.getConnection();
             stmt = conn.prepareStatement(SQL_INSERT);
-            stmt.setInt(1, perfil.getId_perfil());
-            stmt.setString(2, perfil.getNombre_perfil());
-            stmt.setString(3, perfil.getEstatus_perfil());
-
-            System.out.println("ejecutando query: " + SQL_INSERT);
+            
+            stmt.setString(1, bodega.getPkid());
+            stmt.setString(2, bodega.getFkidtipobodega());
+            stmt.setString(3, bodega.getNombre());
+            stmt.setString(4, bodega.getDireccion());
+            stmt.setString(5, bodega.getEstado());
+            
             rows = stmt.executeUpdate();
-            System.out.println("Registros afectados: " + rows);
         } catch (SQLException ex) {
             ex.printStackTrace(System.out);
         } finally {
             Conexion.close(stmt);
             Conexion.close(conn);
         }
-
         return rows;
     }
-
-    public int update(Perfil perfil) {
+    public int update(Bodega bodega) {
         Connection conn = null;
         PreparedStatement stmt = null;
         int rows = 0;
 
         try {
             conn = Conexion.getConnection();
-            System.out.println("ejecutando query: " + SQL_UPDATE);
             stmt = conn.prepareStatement(SQL_UPDATE);
             
-            stmt.setString(1, perfil.getNombre_perfil());
-            stmt.setString(2, perfil.getEstatus_perfil());
-            stmt.setInt(3, perfil.getId_perfil());
+            
+            
+            stmt.setString(1, bodega.getFkidtipobodega());
+            stmt.setString(2, bodega.getNombre());
+            stmt.setString(3, bodega.getDireccion());
+            stmt.setString(4, bodega.getEstado());       
+            stmt.setString(5, bodega.getPkid());
             
             rows = stmt.executeUpdate();
-            System.out.println("Registros actualizado: " + rows);
-
         } catch (SQLException ex) {
             ex.printStackTrace(System.out);
         } finally {
             Conexion.close(stmt);
             Conexion.close(conn);
         }
-
         return rows;
     }
-
-    public int delete(Perfil perfil) {
+    public int delete(Bodega bodega) {
         Connection conn = null;
         PreparedStatement stmt = null;
         int rows = 0;
 
         try {
             conn = Conexion.getConnection();
-            System.out.println("Ejecutando query: " + SQL_DELETE);
             stmt = conn.prepareStatement(SQL_DELETE);
-            stmt.setInt(1, perfil.getId_perfil());
+            stmt.setString(1, bodega.getPkid());
+
             rows = stmt.executeUpdate();
-            System.out.println("Registros eliminados: " + rows);
         } catch (SQLException ex) {
             ex.printStackTrace(System.out);
         } finally {
             Conexion.close(stmt);
             Conexion.close(conn);
         }
-
         return rows;
     }
-
-    public Perfil query(Perfil perfil) {    
+    
+    public Bodega query(Bodega bodega) {
         Connection conn = null;
         PreparedStatement stmt = null;
         ResultSet rs = null;
-        List<Perfil> perfiles = new ArrayList<Perfil>();
-        int rows = 0;
 
         try {
             conn = Conexion.getConnection();
-            System.out.println("Ejecutando query: " + SQL_QUERY);
             stmt = conn.prepareStatement(SQL_QUERY);
-            stmt.setInt(1, perfil.getId_perfil());
+            stmt.setString(1, bodega.getPkid());
             rs = stmt.executeQuery();
-            while (rs.next()) {
-                int idPerfil = rs.getInt("id_perfil");
-                String nombrePerfil = rs.getString("nombre_perfil");
-                String estatusPerfil = rs.getString("estatus_perfil");
-                
-                perfil = new Perfil();
-                perfil.setId_perfil(idPerfil);
-                perfil.setNombre_perfil(nombrePerfil);
-                perfil.setEstatus_perfil(estatusPerfil);
-
+            if (rs.next()) {
+                bodega.setFkidtipobodega(rs.getString("fkidtipobodega"));
+                bodega.setNombre(rs.getString("nombre"));
+                bodega.setDireccion(rs.getString("direccion"));
+                bodega.setEstado(rs.getString("estado"));
             }
 
         } catch (SQLException ex) {
@@ -174,8 +156,7 @@ public class PerfilDAO {
             Conexion.close(stmt);
             Conexion.close(conn);
         }
-
-        return perfil; 
+        return bodega;
     }
     
     public void imprimirReporte() {
@@ -189,12 +170,12 @@ public class PerfilDAO {
                     + "/src/main/java/ReportePrueba/"+ "ReportePrueba.jrxml");
             print = JasperFillManager.fillReport(report, p, conn);
             JasperViewer view = new JasperViewer(print, false);
-            view.setTitle("Reporte de Vendedores");
+            view.setTitle("Reporte de Bodegaes");
             view.setVisible(true);
 
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
-        
+
 }
