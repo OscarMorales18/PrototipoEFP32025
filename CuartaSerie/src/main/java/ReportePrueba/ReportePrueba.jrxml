@@ -73,11 +73,11 @@
 			<staticText>
 				<reportElement style="Title" x="0" y="13" width="263" height="33" uuid="b05c5fdd-861b-4d95-86fc-e4735fb0751d"/>
 				<textElement verticalAlignment="Middle"/>
-				<text><![CDATA[Leaf Red Title]]></text>
+				<text><![CDATA[Reporte de Bodegas]]></text>
 			</staticText>
 			<staticText>
 				<reportElement style="SubTitle" x="117" y="46" width="157" height="22" uuid="cf7c5f50-80c5-40d6-9264-a59cde71f226"/>
-				<text><![CDATA[Leaf Red SubTitle]]></text>
+				<text><![CDATA[Oscar Morales]]></text>
 			</staticText>
 		</band>
 	</title>

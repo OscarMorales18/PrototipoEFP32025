@@ -103,7 +103,6 @@ public class MantenimientoBodega extends javax.swing.JInternalFrame {
         Estado = new javax.swing.JLabel();
         txtestado = new javax.swing.JTextField();
         jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
 
         lb2.setForeground(new java.awt.Color(204, 204, 204));
         lb2.setText(".");
@@ -111,8 +110,7 @@ public class MantenimientoBodega extends javax.swing.JInternalFrame {
         setClosable(true);
         setIconifiable(true);
         setMaximizable(true);
-        setResizable(true);
-        setTitle("Mantenimiento Sede");
+        setTitle("PrototipoEFP32025 Oscar Morales");
         setVisible(true);
 
         btnEliminar.setText("Eliminar");
@@ -137,7 +135,7 @@ public class MantenimientoBodega extends javax.swing.JInternalFrame {
         });
 
         label1.setFont(new java.awt.Font("Century Gothic", 1, 12)); // NOI18N
-        label1.setText("Vendedores");
+        label1.setText("Bodegas");
 
         btnModificar.setText("Modificar");
         btnModificar.addActionListener(new java.awt.event.ActionListener() {
@@ -186,7 +184,7 @@ public class MantenimientoBodega extends javax.swing.JInternalFrame {
         });
 
         label4.setFont(new java.awt.Font("Century Gothic", 1, 12)); // NOI18N
-        label4.setText("Perfiles:");
+        label4.setText("Bodegas");
 
         lb.setForeground(new java.awt.Color(204, 204, 204));
         lb.setText(".");
@@ -218,13 +216,6 @@ public class MantenimientoBodega extends javax.swing.JInternalFrame {
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton2ActionPerformed(evt);
-            }
-        });
-
-        jButton3.setText("Ayudas");
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
             }
         });
 
@@ -290,8 +281,6 @@ public class MantenimientoBodega extends javax.swing.JInternalFrame {
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(14, 14, 14)
                                 .addComponent(jButton2)
-                                .addGap(31, 31, 31)
-                                .addComponent(jButton3)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(label4)
                                 .addGap(18, 18, 18)))
@@ -355,9 +344,7 @@ public class MantenimientoBodega extends javax.swing.JInternalFrame {
                             .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 303, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jButton1))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jButton2)
-                            .addComponent(jButton3))
+                        .addComponent(jButton2)
                         .addGap(28, 28, 28))))
         );
 
@@ -436,22 +423,6 @@ public class MantenimientoBodega extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_cbox_empleadoActionPerformed
 
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        try {
-            if ((new File("src\\main\\java\\ayudas\\AyudaVentas.chm")).exists()) {
-                Process p = Runtime
-                        .getRuntime()
-                        .exec("rundll32 url.dll,FileProtocolHandler src\\main\\java\\ayudas\\AyudaVentas.chm");
-                p.waitFor();
-            } else {
-                System.out.println("La ayuda no Fue encontrada");
-            }
-            System.out.println("Correcto");
-        } catch (Exception ex) {
-            ex.printStackTrace();
-        }
-    }//GEN-LAST:event_jButton3ActionPerformed
-
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         
         BodegaDAO bodegaDAO = new BodegaDAO();
@@ -479,7 +450,6 @@ public class MantenimientoBodega extends javax.swing.JInternalFrame {
     private javax.swing.JComboBox<String> cbox_empleado;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel label1;
