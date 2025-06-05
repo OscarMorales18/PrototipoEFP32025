@@ -454,8 +454,8 @@ public class MantenimientoBodega extends javax.swing.JInternalFrame {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         
-        BodegaDAO vendedorDAO = new BodegaDAO();
-        vendedorDAO.imprimirReporte(); 
+        BodegaDAO bodegaDAO = new BodegaDAO();
+        bodegaDAO.imprimirReporte(); 
         UsuarioConectado usuarioEnSesion = new UsuarioConectado();
         int resultadoBitacora=0;
         Bitacora bitacoraRegistro = new Bitacora();

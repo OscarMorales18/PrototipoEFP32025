@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" language="groovy" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="bf5de4b7-5014-4dee-9c2c-be1671ee653f">
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" language="groovy" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="073319a8-2799-4ea4-9d9c-2a80e6ca9479">
 	<property name="ireport.zoom" value="1.0"/>
 	<property name="ireport.x" value="0"/>
 	<property name="ireport.y" value="0"/>
@@ -8,42 +8,36 @@
 	<style name="Column header" forecolor="#666666" fontName="Arial" fontSize="12" isBold="true"/>
 	<style name="Detail" fontName="Arial" fontSize="12"/>
 	<queryString language="SQL">
-		<![CDATA[SELECT * FROM vendedor;]]>
+		<![CDATA[SELECT * FROM bodega;]]>
 	</queryString>
-	<field name="id_vendedor" class="java.lang.Integer">
+	<field name="pkid" class="java.lang.String">
 		<fieldDescription><![CDATA[]]></fieldDescription>
 	</field>
-	<field name="nombre_vendedor" class="java.lang.String">
+	<field name="fkidtipobodega" class="java.lang.String">
 		<fieldDescription><![CDATA[]]></fieldDescription>
 	</field>
-	<field name="apellido_vendedor" class="java.lang.String">
+	<field name="nombre" class="java.lang.String">
 		<fieldDescription><![CDATA[]]></fieldDescription>
 	</field>
-	<field name="telefono_vendedor" class="java.lang.Integer">
+	<field name="direccion" class="java.lang.String">
 		<fieldDescription><![CDATA[]]></fieldDescription>
 	</field>
-	<field name="direccion_vendedor" class="java.lang.String">
+	<field name="estado" class="java.lang.String">
 		<fieldDescription><![CDATA[]]></fieldDescription>
 	</field>
-	<field name="correo_vendedor" class="java.lang.String">
-		<fieldDescription><![CDATA[]]></fieldDescription>
-	</field>
-	<field name="estatus_vendedor" class="java.lang.String">
-		<fieldDescription><![CDATA[]]></fieldDescription>
-	</field>
-	<group name="id_vendedor">
-		<groupExpression><![CDATA[$F{id_vendedor}]]></groupExpression>
+	<group name="pkid">
+		<groupExpression><![CDATA[$F{pkid}]]></groupExpression>
 		<groupHeader>
 			<band height="40">
 				<textField>
-					<reportElement style="SubTitle" x="47" y="13" width="506" height="24" forecolor="#990099" uuid="5b62d753-d9a7-4bdb-b407-b55db5df14cf"/>
+					<reportElement style="SubTitle" x="47" y="13" width="506" height="24" forecolor="#CC0000" uuid="519a7a14-bf73-448f-8478-920c2a7f9399"/>
 					<textElement>
 						<font isBold="true"/>
 					</textElement>
-					<textFieldExpression><![CDATA[$F{id_vendedor}]]></textFieldExpression>
+					<textFieldExpression><![CDATA[$F{pkid}]]></textFieldExpression>
 				</textField>
 				<rectangle>
-					<reportElement mode="Opaque" x="0" y="13" width="36" height="24" forecolor="#CCCCCC" backcolor="#CCCCCC" uuid="87579dbd-c10c-434f-b2ba-0879a332093d"/>
+					<reportElement mode="Opaque" x="0" y="13" width="36" height="24" forecolor="#CCCCCC" backcolor="#CCCCCC" uuid="15fc8a28-2703-44a7-86df-7fba25b884e0"/>
 				</rectangle>
 			</band>
 		</groupHeader>
@@ -51,25 +45,25 @@
 			<band height="6"/>
 		</groupFooter>
 	</group>
-	<group name="nombre_vendedor">
-		<groupExpression><![CDATA[$F{nombre_vendedor}]]></groupExpression>
+	<group name="nombre">
+		<groupExpression><![CDATA[$F{nombre}]]></groupExpression>
 		<groupHeader>
 			<band height="30">
 				<textField>
-					<reportElement style="SubTitle" x="0" y="4" width="460" height="20" uuid="61bf5717-5e66-4efb-bd6c-451c9dff697c"/>
+					<reportElement style="SubTitle" x="0" y="4" width="460" height="20" uuid="b9c38f5c-51bd-40f2-92f0-ccb4f43ec6ff"/>
 					<textElement>
 						<font size="16" isBold="true"/>
 					</textElement>
-					<textFieldExpression><![CDATA[$F{nombre_vendedor}]]></textFieldExpression>
+					<textFieldExpression><![CDATA[$F{nombre}]]></textFieldExpression>
 				</textField>
 			</band>
 		</groupHeader>
 	</group>
-	<group name="correo_vendedor">
-		<groupExpression><![CDATA[$F{correo_vendedor}]]></groupExpression>
+	<group name="direccion">
+		<groupExpression><![CDATA[$F{direccion}]]></groupExpression>
 	</group>
-	<group name="estatus_vendedor">
-		<groupExpression><![CDATA[$F{estatus_vendedor}]]></groupExpression>
+	<group name="estado">
+		<groupExpression><![CDATA[$F{estado}]]></groupExpression>
 	</group>
 	<background>
 		<band splitType="Stretch"/>
@@ -77,9 +71,13 @@
 	<title>
 		<band height="70" splitType="Stretch">
 			<staticText>
-				<reportElement style="Title" x="0" y="13" width="298" height="33" uuid="0cee095e-288f-484e-ad2e-40341d727a68"/>
+				<reportElement style="Title" x="0" y="13" width="263" height="33" uuid="b05c5fdd-861b-4d95-86fc-e4735fb0751d"/>
 				<textElement verticalAlignment="Middle"/>
-				<text><![CDATA[Reporte de Vendedores]]></text>
+				<text><![CDATA[Leaf Red Title]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="SubTitle" x="117" y="46" width="157" height="22" uuid="cf7c5f50-80c5-40d6-9264-a59cde71f226"/>
+				<text><![CDATA[Leaf Red SubTitle]]></text>
 			</staticText>
 		</band>
 	</title>
@@ -89,51 +87,35 @@
 	<columnHeader>
 		<band height="36" splitType="Stretch">
 			<line>
-				<reportElement positionType="FixRelativeToBottom" x="0" y="35" width="555" height="1" uuid="be18032f-5d9a-4394-9eca-7ef1cbdde1c5"/>
+				<reportElement positionType="FixRelativeToBottom" x="0" y="35" width="555" height="1" uuid="26107763-7989-48bb-ae5b-d04baec77f57"/>
 				<graphicElement>
 					<pen lineWidth="0.5" lineColor="#999999"/>
 				</graphicElement>
 			</line>
 			<staticText>
-				<reportElement style="Column header" x="0" y="19" width="185" height="15" uuid="8b16d7ae-8f0d-4dd0-b08f-123f9206d2af"/>
-				<text><![CDATA[nombre_vendedor]]></text>
-			</staticText>
-			<staticText>
-				<reportElement style="Column header" x="185" y="19" width="185" height="15" uuid="66d68ecb-9c5e-4c87-a860-b3cf273dc9d0"/>
-				<text><![CDATA[telefono_vendedor]]></text>
-			</staticText>
-			<staticText>
-				<reportElement style="Column header" x="370" y="19" width="185" height="15" uuid="6bbd3743-ecdd-44d4-bb53-b000f0c6981b"/>
-				<text><![CDATA[direccion_vendedor]]></text>
+				<reportElement style="Column header" x="0" y="19" width="555" height="15" uuid="4a4d341c-eb65-46ec-b761-34e9633c1424"/>
+				<text><![CDATA[fkidtipobodega]]></text>
 			</staticText>
 		</band>
 	</columnHeader>
 	<detail>
 		<band height="16" splitType="Stretch">
 			<line>
-				<reportElement positionType="FixRelativeToBottom" x="0" y="15" width="555" height="1" uuid="3c027fff-9dc2-4ba2-85ff-4c489608e032"/>
+				<reportElement positionType="FixRelativeToBottom" x="0" y="15" width="555" height="1" uuid="e7d2ecde-bafd-4b06-b1e7-464a087f52bf"/>
 				<graphicElement>
 					<pen lineWidth="0.5" lineColor="#999999"/>
 				</graphicElement>
 			</line>
 			<textField>
-				<reportElement style="Detail" x="0" y="0" width="185" height="15" uuid="3310b5d1-84dc-4b0a-9a5f-cec19206fa55"/>
-				<textFieldExpression><![CDATA[$F{apellido_vendedor}]]></textFieldExpression>
-			</textField>
-			<textField>
-				<reportElement style="Detail" x="185" y="0" width="185" height="15" uuid="3458dec6-2aeb-43fb-a016-dfbfd242a870"/>
-				<textFieldExpression><![CDATA[$F{telefono_vendedor}]]></textFieldExpression>
-			</textField>
-			<textField>
-				<reportElement style="Detail" x="370" y="0" width="185" height="15" uuid="63ab7cab-7ffb-4b0f-bada-6b436246588f"/>
-				<textFieldExpression><![CDATA[$F{direccion_vendedor}]]></textFieldExpression>
+				<reportElement style="Detail" x="0" y="0" width="555" height="15" uuid="20b9e262-26ad-419f-8a14-715fb08416a9"/>
+				<textFieldExpression><![CDATA[$F{fkidtipobodega}]]></textFieldExpression>
 			</textField>
 		</band>
 	</detail>
 	<columnFooter>
 		<band height="45" splitType="Stretch">
 			<line>
-				<reportElement positionType="FixRelativeToBottom" x="0" y="3" width="555" height="1" uuid="ee18e6fe-4ab1-422e-b7ff-e2ebd587cef6"/>
+				<reportElement positionType="FixRelativeToBottom" x="0" y="3" width="555" height="1" uuid="7b5128f6-8512-4d1c-9800-d517688372e1"/>
 				<graphicElement>
 					<pen lineWidth="0.5" lineColor="#999999"/>
 				</graphicElement>
@@ -143,21 +125,21 @@
 	<pageFooter>
 		<band height="20" splitType="Stretch">
 			<textField>
-				<reportElement style="Column header" x="433" y="0" width="80" height="20" uuid="108a415f-24fc-4c17-a4fd-229618298a70"/>
+				<reportElement style="Column header" x="433" y="0" width="80" height="20" uuid="7955e862-2bbc-4bf7-abec-b612d32814cb"/>
 				<textElement textAlignment="Right">
 					<font size="10" isBold="false"/>
 				</textElement>
 				<textFieldExpression><![CDATA["Page "+$V{PAGE_NUMBER}+" of"]]></textFieldExpression>
 			</textField>
 			<textField evaluationTime="Report">
-				<reportElement style="Column header" x="513" y="0" width="40" height="20" uuid="e58bb474-f799-41c1-90b9-bc20fade292d"/>
+				<reportElement style="Column header" x="513" y="0" width="40" height="20" uuid="f1890178-474a-4dae-8a30-4f83524777c5"/>
 				<textElement>
 					<font size="10" isBold="false"/>
 				</textElement>
 				<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
 			</textField>
 			<textField pattern="EEEEE dd MMMMM yyyy">
-				<reportElement style="Column header" x="0" y="0" width="197" height="20" uuid="804e7de7-8166-4fe4-9bf9-afa18ef7e9a3"/>
+				<reportElement style="Column header" x="0" y="0" width="197" height="20" uuid="f4375331-b4f9-4c44-98be-acabd8cee0f7"/>
 				<textElement>
 					<font size="10" isBold="false"/>
 				</textElement>
